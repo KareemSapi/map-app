@@ -1,14 +1,19 @@
-import { Component, ElementRef, NgZone, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { GoogleMap } from '@angular/google-maps';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-google-map',
+  templateUrl: './google-map.component.html',
+  styleUrls: ['./google-map.component.css']
 })
-export class AppComponent {
-  title = 'map-app';
-/*
+export class GoogleMapComponent implements OnInit, AfterViewInit {
+
+  apiLoaded!: Observable<boolean> ;
+  
   @ViewChild('search')
   public searchElementRef!: ElementRef;
   @ViewChild(GoogleMap)
@@ -29,7 +34,17 @@ export class AppComponent {
   latitude!: any;
   longitude!: any;
 
-  constructor(private ngZone: NgZone) {}
+  constructor(
+      private ngZone: NgZone,
+      private httpClient: HttpClient,
+    ){
+      //this.apiLoaded = httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=ENTER..YOUR..API..HERE&libraries=places', 'callback')
+        //.pipe(
+          //map(() => true, console.log('map loaded')),
+          //catchError(() => of(false)),
+        //);
+
+    }
 
   ngAfterViewInit(): void {
     // Binding autocomplete to search input control
@@ -71,5 +86,5 @@ export class AppComponent {
       };
     });
   }
-  */
+
 }

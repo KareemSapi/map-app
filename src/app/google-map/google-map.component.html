@@ -1,0 +1,20 @@
+
+
+<div>
+    <input
+    type="text"
+    class="my-search-box"
+    (keydown.enter)="$event.preventDefault()"
+    placeholder="Search Location"
+    type="text"
+    #search
+    />
+    <google-map
+    #myGoogleMap
+    height="500px"
+    width="100%"
+    [zoom]="zoom"
+    [center]="center"
+    [options]="options"
+    ></google-map>
+</div>
